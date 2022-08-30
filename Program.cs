@@ -43,6 +43,23 @@ namespace TextEditor
                 text += Environment.NewLine;
             }
             while (Console.ReadKey().Key != ConsoleKey.Escape);
+
+            Save(text);
+        }
+
+        static void Save(string text)
+        {
+            Console.Clear();
+            Console.WriteLine("Qual Caminho para salvar o arquivo?");
+            var path = Console.ReadLine();
+
+            using (var file = new StreamWriter(path))
+            {
+                file.Write(text);
+            }
+
+            Console.WriteLine($"Arquivo {path} salvo com sucesso");
+            Menu();
         }
     }
 }
